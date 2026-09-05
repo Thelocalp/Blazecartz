@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block title %}Store error — {{ store_name }}{% endblock %}{% block content %}<section class="container empty"><h1>Something went wrong</h1><p class="muted">{{ error }}</p><a class="btn primary" href="{{ url_for('home') }}">Try again</a></section>{% endblock %}
