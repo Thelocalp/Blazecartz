@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}{{ store_name }}{% endblock %}</title>
+<meta name="description" content="Blaze_cartz — a modern online shopping store.">
+<link rel="icon" href="{{ url_for('static', filename='uploads/blaze-cartz-logo.jpg') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='uploads/blaze-cartz-logo.jpg') }}" alt="Blaze_cartz"><span>Blaze_cartz</span></a>
+    <nav><a href="{{ url_for('home') }}">Shop</a><a href="{{ url_for('cart') }}">Cart <b class="cart-badge">{{ cart_count }}</b></a>{% if admin %}<a href="{{ url_for('admin_dashboard') }}">Admin</a><a href="{{ url_for('admin_logout') }}">Logout</a>{% endif %}</nav>
+  </div>
+</header>
+<main>{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="container alerts">{% for category,msg in messages %}<div class="alert {{ category }}">{{ msg }}</div>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer><div class="container footer-inner"><span>© {{ store_name }}</span><span>Simple shopping. Bold style.</span></div></footer>
+</body></html>
